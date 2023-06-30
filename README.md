@@ -52,7 +52,6 @@ I work in a regulated environment with a ton of juicy data, but alas I can't exp
 Luckily, Microsoft provide a "Microsoft Defender for Endpoint evaluation lab" which can be accessed with a free trial. The free trial gives you 3 months of access and a P2 licence, which is a pretty good deal.
 I won't detail the sign up steps here, but its simple and takes a few minutes with no credit card needed. Just create a new user and tenancy and get dropped into a blank Microsoft 365 Defender console. You can find the setup steps here [Microsoft Defender for Endpoint evaluation lab | Microsoft Learn](https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/evaluation-lab?view=o365-worldwide)
 
-![Alt text](<img/Pasted image 20230628112619.png>)
 
 Once we have access, we just need to follow the steps in the above guide to provision the evaluation lab. This will take a while, so best to do something in the interim.
 
