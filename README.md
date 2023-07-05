@@ -136,8 +136,7 @@ DeviceNetworkEvents
 
 #### Test 2, Finding what is hitting your exposed endpoints
 
-Scanning is a little contentious on wether to alert or not, 
-Microsoft have a DeviceTvmSoftwareVulnerabilities table that lists known CVEs that impact your endpoints. This makes finding and alerting scanning high risk assets a little more attractive. You can have a quick look at what is hitting your internet exposed endpoints using a query like the below.
+Scanning is a little contentious on wether to alert or not but Microsoft have a DeviceTvmSoftwareVulnerabilities table that lists known CVEs that impact your endpoints. This makes finding and alerting scanning high risk assets a little more attractive. You can have a quick look at what is hitting your internet exposed endpoints using a query like the below.
 
 #### Test 2, Detection Ideas
 
@@ -153,7 +152,7 @@ DeviceNetworkEvents
 | sort by Timestamp desc
 ```
 
-We can then stitch this with the Vulnerabilities tables to get an idea of the potential exposure where the vuln has an exploit available.
+We can then stitch this with the DeviceTvmSoftwareVulnerabilities table to get an idea of the potential exposure where the vuln has an exploit available.
 If you wanted to be fancy, you could use the externaldata function and pull in a threat feed and do some classification on what is hitting your endpoint. You could also create a list of assets that are likely to have a high impact to the org if exploited and do some risk scoring on user_agents and ip addrs.
 ```
 let scanners = (
