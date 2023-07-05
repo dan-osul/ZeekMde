@@ -130,7 +130,8 @@ DeviceNetworkEvents
 ```
 ![Alt text](/img/image-5.png)
 
-+ DNS Summary. This is a good alerting source, but made even better if you don't have a fancy enterprise proxy or IPS from some of the big and expensive behemoths. It won't replace your Palo or Zscaller (if you're lucky enough to have them) but its a good complimentary detection source for those who do and a great way to get visibility for those who don't. 
+- DNS Summary\
+  This is a good alerting source, but made even better if you don't have a fancy enterprise proxy or IPS from some of the big and expensive behemoths. It won't replace your Palo or Zscaller (if you're lucky enough to have them) but its a good complimentary detection source for those who do and a great way to get visibility for those who don't. 
 
 
 #### Test 2, Finding what is hitting your exposed endpoints
