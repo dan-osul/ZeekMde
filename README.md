@@ -27,7 +27,7 @@ Back in November 2022, Microsoft announced they were intergrating Zeek with Micr
 
 Fig1 - [Enrich your advanced hunting experience using network layer signals from Zeek (microsoft.com)](https://techcommunity.microsoft.com/t5/microsoft-defender-for-endpoint/enrich-your-advanced-hunting-experience-using-network-layer/ba-p/3794693?WT.mc_id=AZ-MVP-5004810)
 
-The most relevant data lives, as is tradition, as nested obects in AdditionalFields . Annoying to parse in MDE Advanced hunting, easy in sentinel if you have the luxury of streaming your raw MDE data types to the sentinel connection - [Support for Microsoft 365 Defender connector data types in Microsoft Sentinel for different clouds (GCC environments) | Microsoft Learn](https://learn.microsoft.com/en-us/azure/sentinel/microsoft-365-defender-cloud-support)
+The most relevant data lives, as is tradition, as nested obects in AdditionalFields. Annoying to parse in MDE Advanced hunting, easy in sentinel if you have the luxury of streaming your raw MDE data types to the sentinel connection - [Support for Microsoft 365 Defender connector data types in Microsoft Sentinel for different clouds (GCC environments) | Microsoft Learn](https://learn.microsoft.com/en-us/azure/sentinel/microsoft-365-defender-cloud-support)
 
 
 |   |   |
@@ -45,6 +45,7 @@ The most relevant data lives, as is tradition, as nested obects in AdditionalFie
 |resp_pkts|The number of packets that the responder sent.|
 |Uid|Unique Zeek ID of the transaction.|
 
+Fig2 - ICMP objects in AdditionalFields
 
 ## Setting up our Evaluation lab
 
@@ -56,7 +57,9 @@ I won't detail the sign up steps here, but its simple and takes a few minutes wi
 Once we have access, we just need to follow the steps in the above guide to provision the evaluation lab. This will take a while, so best to do something in the interim.
 
 
-I've set the environment up as so, deciding against any of the Simulation integrations at first, as I want to see if I get access to an endpoint and can just run atomic redteam on it, as I didn't feel like sharing my data with another vendor. You can read more about atomic redteam here [GitHub - redcanaryco/atomic-red-team: Small and highly portable detection tests based on MITRE's ATT&CK.](https://github.com/redcanaryco/atomic-red-team) and from my jaded perspective, both of these products probably use some portion of atomic under the hood. Reading the doco, you can also run Microsofts DIY attack scenarios and access the machines via Ransomware Deployment Protocol (RDP) the "Actions - Connect" function on the screenshot below.
+Whilst setting up the environment, I decided against any of the pre-canned simulations from other vendors. I want can just run atomic redteam on it so I can define the attacks, instead of those cherry picked by Microsoft. You can read more about atomic redteam here [GitHub - redcanaryco/atomic-red-team: Small and highly portable detection tests based on MITRE's ATT&CK.](https://github.com/redcanaryco/atomic-red-team) 
+
+From jaded perspective, both of these integrated products probably use some portion of atomic under the hood. Reading the doco, you can also run Microsofts DIY attack scenarios and access the machines via Ransomware Deployment Protocol (RDP) then the "Actions - Connect" function on the screenshot below.
 
 So far I have only added 5 of my 8 allocated devices. 
 
@@ -88,7 +91,7 @@ The Atomic simulation is just a batch file that contains 10 sample tests like du
 ###  Test 1, finding New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/redcanaryco/
 
 
-I've redacted the full command in this doco, but did a really broad search across the DeviceNetworkEvents table, and returned no results for the explicit URL containing "redcanaryco". Searching again for github, I found two DnsConnectionInspected entries from Zeek. Kind of helpful as a way to start understanding the data available to us but sad we didn't get great visibility to the specific repo. Lets see what we can do with the DNS requests.
+I've redacted the full command in this doco, but did a really broad search across the DeviceNetworkEvents table, and returned no results for the explicit URL containing "redcanaryco" and a few other variations. Searching again for github, I found two DnsConnectionInspected entries from Zeek. Kind of helpful as a way to start understanding the data available to us but sad we didn't get great visibility to the specific repo. Lets see what we can do with the DNS requests.
 
 ![Alt text](/img/image-3.png)
 
