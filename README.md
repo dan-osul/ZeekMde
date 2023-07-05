@@ -98,6 +98,7 @@ I've redacted the full command in this doco, but did a really broad search acros
 #### Test 1, Detection ideas
 
 - DNS requests to suspicious domains
+Maybe you block a number of TLDs your organisation has decided are scary, and you want another alerting source to show requests to them. You could likely also stitch this onto DeviceProcessEvents or DeviceEvents to see the file or program generating the request.
 ```
 // DNS badness
 let scaryDomains = dynamic([
