@@ -60,7 +60,7 @@ I've set the environment up as so, deciding against any of the Simulation integr
 
 So far I have only added 5 of my 8 allocated devices. 
 
-![Alt text](image.png)
+![Alt text](/img/image.png)
 
 testserver2 = nix attack machine\
 testmachine1 = Victim Windows 10\
@@ -71,11 +71,11 @@ testmachine5 was created automatically after creating the domain controller\
 
 And we can see we already have some data in there form my testing on the linux server, however when checking the zeek logs - I don't see any activity for this machine and it turns out that is because it isn't supported! *we extended Zeek to support Windows-based systems* [Microsoft Defender for Endpoint now integrated with Zeek](https://techcommunity.microsoft.com/t5/microsoft-defender-for-endpoint/new-network-based-detections-and-improved-device-discovery-using/ba-p/3682111)
 
-![Alt text](image-1.png)
+![Alt text](/img/image-1.png)
 
 The second query is a way to expand out all the fields stored in the JSON object using the bag_unpack function, I like this as an overview of what data is available.
 
-![Alt text](image-2.png)
+![Alt text](/img/image-2.png)
 
 ##  What can we find
 
@@ -90,7 +90,7 @@ The Atomic simulation is just a batch file that contains 10 sample tests like du
 
 I've redacted the full command in this doco, but did a really broad search across the DeviceNetworkEvents table, and returned no results for the explicit URL containing "redcanaryco". Searching again for github, I found two DnsConnectionInspected entries from Zeek. Kind of helpful as a way to start understanding the data available to us but sad we didn't get great visibility to the specific repo. Lets see what we can do with the DNS requests.
 
-![Alt text](image-3.png)
+![Alt text](/img/image-3.png)
 
 ### Test 1, Detection ideas
 
@@ -109,7 +109,7 @@ DeviceNetworkEvents
 | where query has_any (scaryDomains)
 | project Timestamp,ActionType, LocalIP, RemoteIP, qtype_name, query, direction
 ```
-![Alt text](image-4.png)
+![Alt text](/img/image-4.png)
 *In Russia, DNS queries YOU*
 
 - Possible DNS exfiltration or tunnelling using traffic analysis
@@ -124,7 +124,7 @@ DeviceNetworkEvents
 | summarize count()by LocalIP
 | sort by count_
 ```
-![Alt text](image-5.png)
+![Alt text](/img/image-5.png)
 
 + DNS Summary. This is a good alerting source, but made even better if you don't have a fancy enterprise proxy or IPS from some of the big and expensive behemoths. It won't replace your Palo or Zscaller (if you're lucky enough to have them) but its a good complimentary detection source for those who do and a great way to get visibility for those who don't. 
 
@@ -168,6 +168,5 @@ DeviceTvmSoftwareVulnerabilities
 scanners
 | join kind=inner bugdata on DeviceName
 ```
-![Alt text](image-6.png)
+![Alt text](/img/image-6.png)
 
-git
