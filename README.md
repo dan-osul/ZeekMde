@@ -84,18 +84,18 @@ The second query is a way to expand out all the fields stored in the JSON object
 
 *Note: None of these detections are production ready, they are just examples to outline the data I found whilst digging into the new(ish) data source*
 
-Firstly, I started off on the Windows 10 victim, testmachine1 but hit a few snags. I wasn't able to install the Atomics folder that contains the definitions for atomics red team. EDR was blocking this and I wasn't able to disable this via the gui, registry or Set-MpPreference. I would guess that Microsoft don't want you actually killing the product you're meant to be evaluating and I didn't want to get stuck in a rabbit hole on an ephemeral machine. I checked the Simulation available in MDE and found Atomic was there anyway.
+Firstly, I started off on the Windows 10 victim, testmachine1 but hit a few snags. I wasn't able to install the Atomics folder that contains the definitions for atomics red team. EDR was blocking this and I wasn't able to disable this via the gui, registry or Set-MpPreference. I would guess that Microsoft don't want you actually killing the product you're meant to be evaluating and I didn't want to get stuck in a rabbit hole on an ephemeral machine. I checked the "Simulations" available in MDE and found Atomic was there anyway.
 
 The Atomic simulation is just a batch file that contains 10 sample tests like dumping lsass, renaming Microsoft binaries for execution, schtask creation and only one command that reached out using to the atomic github using New-Object Net.WebClient, surely we can find that.
 
-###  Test 1, finding New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/redcanaryco/
+####  Test 1, finding New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/redcanaryco/
 
 
 I've redacted the full command in this doco, but did a really broad search across the DeviceNetworkEvents table, and returned no results for the explicit URL containing "redcanaryco" and a few other variations. Searching again for github, I found two DnsConnectionInspected entries from Zeek. Kind of helpful as a way to start understanding the data available to us but sad we didn't get great visibility to the specific repo. Lets see what we can do with the DNS requests.
 
 ![Alt text](/img/image-3.png)
 
-### Test 1, Detection ideas
+#### Test 1, Detection ideas
 
 - DNS requests to suspicious domains
 ```
@@ -132,12 +132,12 @@ DeviceNetworkEvents
 + DNS Summary. This is a good alerting source, but made even better if you don't have a fancy enterprise proxy or IPS from some of the big and expensive behemoths. It won't replace your Palo or Zscaller (if you're lucky enough to have them) but its a good complimentary detection source for those who do and a great way to get visibility for those who don't. 
 
 
-### Test 2, Finding what is hitting your exposed endpoints
+#### Test 2, Finding what is hitting your exposed endpoints
 
-Scanning is a little contentious on wether to alert or not, because for a long time you didn't have great vulnerability data on the endpoint and you can't really help it.
-Microsoft have a DeviceTvmSoftwareVulnerabilities table that lists known CVEs that impact your endpoints. This makes finding scanning a little more attractive. You can have a quick look at what is hitting your internet exposed endpoints using a query like the below.
+Scanning is a little contentious on wether to alert or not, 
+Microsoft have a DeviceTvmSoftwareVulnerabilities table that lists known CVEs that impact your endpoints. This makes finding and alerting scanning high risk assets a little more attractive. You can have a quick look at what is hitting your internet exposed endpoints using a query like the below.
 
-### Test 2, Detection Ideas
+#### Test 2, Detection Ideas
 
 ```
 // Finding scanning
@@ -151,7 +151,7 @@ DeviceNetworkEvents
 | sort by Timestamp desc
 ```
 
-We can then stitch this with the Vulnerabilities tables to get an idea of the potential exposure where the bug has an exploit available.
+We can then stitch this with the Vulnerabilities tables to get an idea of the potential exposure where the vuln has an exploit available.
 If you wanted to be fancy, you could use the externaldata function and pull in a threat feed and do some classification on what is hitting your endpoint. You could also create a list of assets that are likely to have a high impact to the org if exploited and do some risk scoring on user_agents and ip addrs.
 ```
 let scanners = (
@@ -173,3 +173,6 @@ scanners
 ```
 ![Alt text](/img/image-6.png)
 
+### Part 2
+
+I went and did something else and my machines expired, so now we need to provision more. TBC.
