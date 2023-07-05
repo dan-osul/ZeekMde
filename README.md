@@ -6,7 +6,7 @@ In this blog we are going to
 > Understand the new Zeek data available in Microsoft Defender 365\
 > Build an evaluation lab and run some attacks to generate telemetry\
 > Surface this activity in advanced hunting\
-> Look at some  detection opportunities a
+> Look at some  detection opportunities 
 
 ## Whats it about
 
@@ -27,7 +27,7 @@ Back in November 2022, Microsoft announced they were intergrating Zeek with Micr
 
 Fig1 - [Enrich your advanced hunting experience using network layer signals from Zeek (microsoft.com)](https://techcommunity.microsoft.com/t5/microsoft-defender-for-endpoint/enrich-your-advanced-hunting-experience-using-network-layer/ba-p/3794693?WT.mc_id=AZ-MVP-5004810)
 
-The most relevant data lives, as is tradition, in AdditionalFields as a JSON data structure. Annoying to parse in MDE Advanced hunting, easy in sentinel if you have the luxury of streaming your raw MDE data types to the sentinel connection - [Support for Microsoft 365 Defender connector data types in Microsoft Sentinel for different clouds (GCC environments) | Microsoft Learn](https://learn.microsoft.com/en-us/azure/sentinel/microsoft-365-defender-cloud-support)
+The most relevant data lives, as is tradition, as nested obects in AdditionalFields . Annoying to parse in MDE Advanced hunting, easy in sentinel if you have the luxury of streaming your raw MDE data types to the sentinel connection - [Support for Microsoft 365 Defender connector data types in Microsoft Sentinel for different clouds (GCC environments) | Microsoft Learn](https://learn.microsoft.com/en-us/azure/sentinel/microsoft-365-defender-cloud-support)
 
 
 |   |   |
