@@ -63,7 +63,7 @@ From jaded perspective, both of these integrated products probably use some port
 
 So far I have only added 5 of my 8 allocated devices. 
 
-![Alt text](/img/image.png)
+![Alt text](/img/image-7.png)
 
 testserver2 = nix attack machine\
 testmachine1 = Victim Windows 10\
