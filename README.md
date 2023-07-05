@@ -2,7 +2,7 @@
  
 
 ## Goals
-In this blog we are going to 
+In this repo we are going to 
 > Understand the new Zeek data available in Microsoft Defender 365\
 > Build an evaluation lab and run some attacks to generate telemetry\
 > Surface this activity in advanced hunting\

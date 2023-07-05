@@ -1,0 +1,12 @@
+// DNS badness
+let scaryDomains = dynamic([
+'.ru',
+'.xyz',
+'.zip'
+]);
+DeviceNetworkEvents
+| where ActionType == "DnsConnectionInspected"
+| project todynamic(AdditionalFields), Timestamp,DeviceName,ActionType, RemoteUrl, RemoteIP, LocalIP
+| evaluate bag_unpack(AdditionalFields)
+| where query has_any (scaryDomains)
+| project Timestamp,ActionType, LocalIP, RemoteIP, qtype_name, query, direction

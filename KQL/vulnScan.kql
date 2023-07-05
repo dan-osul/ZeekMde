@@ -1,0 +1,16 @@
+let scanners = (
+DeviceNetworkEvents
+| where ActionType contains "HttpConnectionInspected"
+| project todynamic(AdditionalFields), Timestamp,DeviceName,ActionType, RemoteUrl, RemoteIP, LocalIP
+| evaluate bag_unpack(AdditionalFields)
+| where direction == "In"
+| project Timestamp, DeviceName, LocalIP, RemoteIP, host, user_agent
+| sort by Timestamp desc
+| distinct DeviceName,user_agent,RemoteIP, LocalIP,Timestamp);
+let bugdata = (
+DeviceTvmSoftwareVulnerabilities
+| where DeviceName has_any (scanners) and VulnerabilitySeverityLevel has_any ("High","Critical")
+| join kind=inner(DeviceTvmSoftwareVulnerabilitiesKB) on CveId
+| where IsExploitAvailable == 1 and CvssScore >= 7);
+scanners
+| join kind=inner bugdata on DeviceName

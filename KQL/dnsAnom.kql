@@ -1,0 +1,7 @@
+// DNS tunneling - Network
+DeviceNetworkEvents
+| where ActionType == "DnsConnectionInspected"
+| project todynamic(AdditionalFields), Timestamp,DeviceName,ActionType, RemoteUrl, RemoteIP, LocalIP
+| evaluate bag_unpack(AdditionalFields)
+| summarize count()by LocalIP
+| sort by count_
