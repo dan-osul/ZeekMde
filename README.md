@@ -97,7 +97,7 @@ I've redacted the full command in this doco, but did a really broad search acros
 
 #### Test 1, Detection ideas
 
-- DNS requests to suspicious domains
+- DNS requests to suspicious domains\
 Maybe you block a number of TLDs your organisation has decided are scary, and you want another alerting source to show requests to them. You could likely also stitch this onto DeviceProcessEvents or DeviceEvents to see the file or program generating the request.
 ```
 // DNS badness
@@ -116,7 +116,7 @@ DeviceNetworkEvents
 ![Alt text](/img/image-4.png)
 *In Russia, DNS queries YOU*
 
-- Possible DNS exfiltration or tunnelling using traffic analysis
+- Possible DNS exfiltration or tunnelling using traffic analysis\
 For this one, you would want to baseline your environment to define what is 'normal' and possible create an exclusion list for noisy but benign endpoints. You could also scope this to only search on specific device types and put in a detection rule to alert when the number exceeds the allowable (for your environment) threshold.
 
 ```
