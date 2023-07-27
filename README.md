@@ -136,7 +136,7 @@ DeviceNetworkEvents
 
 #### Test 2, Finding what is hitting your exposed endpoints
 
-Scanning is a little contentious on wether to alert or not but Microsoft have a DeviceTvmSoftwareVulnerabilities table that lists known CVEs that impact your endpoints. This makes finding and alerting scanning high risk assets a little more attractive. You can have a quick look at what is hitting your internet exposed endpoints using a query like the below.
+Scanning is a little contentious on whether to alert or not but Microsoft have a DeviceTvmSoftwareVulnerabilities table that lists known CVEs that impact your endpoints. This makes finding and alerting scanning high risk assets a little more attractive. You can have a quick look at what is hitting your internet exposed endpoints using a query like the below.
 
 #### Test 2, Detection Ideas
 
