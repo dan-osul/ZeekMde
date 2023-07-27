@@ -69,7 +69,7 @@ testserver2 = nix attack machine\
 testmachine1 = Victim Windows 10\
 testserver3 = Victim server\
 Testserver4 = DC\
-testmachine5 was created automatically after creating the domain controller\
+testmachine5 was created automatically after creating the domain controller
 
 
 And we can see we already have some data in there form my testing on the linux server, however when checking the zeek logs - I don't see any activity for this machine and it turns out that is because it isn't supported! *we extended Zeek to support Windows-based systems* [Microsoft Defender for Endpoint now integrated with Zeek](https://techcommunity.microsoft.com/t5/microsoft-defender-for-endpoint/new-network-based-detections-and-improved-device-discovery-using/ba-p/3682111)
@@ -131,7 +131,7 @@ DeviceNetworkEvents
 ![Alt text](/img/image-5.png)
 
 - DNS Summary\
-  This is a good alerting source, but made even better if you don't have a fancy enterprise proxy or IPS from some of the big and expensive behemoths. It won't replace your Palo or Zscaller (if you're lucky enough to have them) but its a good complimentary detection source for those who do and a great way to get visibility for those who don't. 
+  This is a good alerting source, but made even better if you don't have a fancy enterprise proxy or IPS from some of the big and expensive behemoths. It won't replace your Palo or Zscaler (if you're lucky enough to have them) but its a good complimentary detection source for those who do and a great way to get visibility for those who don't. 
 
 
 #### Test 2, Finding what is hitting your exposed endpoints
