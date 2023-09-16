@@ -65,11 +65,14 @@ So far I have only added 5 of my 8 allocated devices.
 
 ![Alt text](/img/image-7.png)
 
-testserver2 = nix attack machine\
-testmachine1 = Victim Windows 10\
-testserver3 = Victim server\
-Testserver4 = DC\
-testmachine5 was created automatically after creating the domain controller
+|   |   |   |
+|---|---|---|
+|**Hostname**|**Desc**|
+|**testserver2**| **nix attack machine**|
+|**testmachine1**| **Victim Windows 10**|
+|**testserver3**|**Victim server**|
+|**Testserver4**|**DC**|
+|**testmachine5**|**created automatically after creating the domain controller**|
 
 
 And we can see we already have some data in there form my testing on the linux server, however when checking the zeek logs - I don't see any activity for this machine and it turns out that is because it isn't supported! *we extended Zeek to support Windows-based systems* [Microsoft Defender for Endpoint now integrated with Zeek](https://techcommunity.microsoft.com/t5/microsoft-defender-for-endpoint/new-network-based-detections-and-improved-device-discovery-using/ba-p/3682111)
